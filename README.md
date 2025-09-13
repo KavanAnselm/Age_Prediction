@@ -39,28 +39,12 @@ The model's performance varies across different age ranges, showing higher accur
 | 46–60 | **7.96** |
 | 61–100 | **10.85** |
 
----
-
 ## Setup and Installation
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/your-username/age-prediction-pytorch.git](https://github.com/your-username/age-prediction-pytorch.git)
-    cd age-prediction-pytorch
-    ```
-
-2.  **Create a virtual environment (recommended):**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
-
-3.  **Install the required packages:**
+1.  **Install the required packages:**
     ```bash
     pip install -r requirements.txt
     ```
-
----
 
 ## Requirements
 
@@ -77,8 +61,6 @@ matplotlib>=3.6
 Pillow>=9.4
 tqdm>=4.64
 ```
-
----
 
 ## Usage
 
@@ -104,34 +86,13 @@ This model requires a dataset with a specific directory structure. The root data
 
 ### 2. Training the Model
 
-1.  Open the `Age_Prediction_Model Ver-4.ipynb` notebook.
+1.  Open the `Age_Prediction_Model.ipynb` notebook.
 2.  In the constants cell (the 3rd code cell), update the `DATA_DIR` variable to point to your dataset's root directory.
 3.  Run all cells in the notebook to train the model from scratch. The trained model weights will be saved as `age_prediction_resnet34.pth`.
 
 ### 3. Inference on a Single Image
 
 To predict the age from a single image, you can use the `predict_age` function defined in the notebook. Ensure the trained model file `age_prediction_resnet34.pth` is in the same directory.
-
-```python
-# Example from the notebook
-from PIL import Image
-import torch
-from torchvision import models, transforms
-
-# Load the trained model
-model = models.resnet34(weights=None)
-num_features = model.fc.in_features
-model.fc = torch.nn.Linear(num_features, 1)
-model.load_state_dict(torch.load('age_prediction_resnet34.pth'))
-model.to(DEVICE)
-model.eval()
-
-# Use the prediction function
-image_path = "path/to/your/image.jpg"
-predicted_age_years, predicted_age_months = predict_age(image_path, model, DEVICE)
-```
-
----
 
 ## Hardware (GPU and CPU Use)
 
